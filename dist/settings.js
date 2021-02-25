@@ -69,10 +69,9 @@ function methods(request, opt) {
       return this.getLocalizedState(stateName, id, def);
     },
     getLocalizedState: function getLocalizedState(stateName, id, def) {
-      if (!this.locale) {
-        this.locale = opt.api.locale.selected();
-      }
-
+      // if (!this.locale) {
+      //   this.locale = opt.api.locale.selected();
+      // }
       var ls = this.localizedState;
 
       if (ls.code !== this.locale) {

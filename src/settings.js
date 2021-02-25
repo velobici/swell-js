@@ -32,9 +32,9 @@ function methods(request, opt) {
     },
 
     getLocalizedState(stateName, id, def) {
-      if (!this.locale) {
-        this.locale = opt.api.locale.selected();
-      }
+      // if (!this.locale) {
+      //   this.locale = opt.api.locale.selected();
+      // }
       const ls = this.localizedState;
       if (ls.code !== this.locale) {
         ls.code = this.locale;

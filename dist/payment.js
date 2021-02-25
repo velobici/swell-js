@@ -29,7 +29,8 @@ var _require2 = require('./utils/stripe'),
     createPaymentMethod = _require2.createPaymentMethod,
     createIDealPaymentMethod = _require2.createIDealPaymentMethod,
     createKlarnaSource = _require2.createKlarnaSource,
-    createBancontactSource = _require2.createBancontactSource;
+    createBancontactSource = _require2.createBancontactSource,
+    stripeAmountByCurrency = _require2.stripeAmountByCurrency;
 
 var LOADING_SCRIPTS = {};
 var CARD_ELEMENTS = {};
@@ -674,7 +675,7 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(paymentMethod.error));
 
           case 11:
-            amount = Math.round(get(cart, 'grand_total', 0) * 100);
+            amount = stripeAmountByCurrency(currency, get(cart, 'grand_total', 0));
             currency = toLower(get(cart, 'currency', 'usd'));
             stripeCustomer = get(cart, 'account.stripe_customer');
             _context10.t0 = toSnake;
@@ -775,7 +776,7 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(_error));
 
           case 44:
-            _amount = get(cart, 'grand_total', 0) * 100;
+            _amount = stripeAmountByCurrency(_currency, get(cart, 'grand_total', 0));
             _currency = toLower(get(cart, 'currency', 'eur'));
             _context10.t3 = toSnake;
             _context10.next = 49;
