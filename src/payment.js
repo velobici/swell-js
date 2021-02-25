@@ -291,7 +291,7 @@ async function paymentTokenize(request, params, payMethods, cart) {
         return onError(paymentMethod.error);
       }
 
-      const amount = get(cart, 'grand_total', 0) * 100;
+      const amount = Math.round(get(cart, 'grand_total', 0) * 100);
       const currency = toLower(get(cart, 'currency', 'usd'));
       const stripeCustomer = get(cart, 'account.stripe_customer');
       const intent = toSnake(

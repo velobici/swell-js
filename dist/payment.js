@@ -674,7 +674,7 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(paymentMethod.error));
 
           case 11:
-            amount = get(cart, 'grand_total', 0) * 100;
+            amount = Math.round(get(cart, 'grand_total', 0) * 100);
             currency = toLower(get(cart, 'currency', 'usd'));
             stripeCustomer = get(cart, 'account.stripe_customer');
             _context10.t0 = toSnake;
