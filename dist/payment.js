@@ -675,7 +675,7 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(paymentMethod.error));
 
           case 11:
-            amount = stripeAmountByCurrency(currency, get(cart, 'grand_total', 0));
+            amount = stripeAmountByCurrency(get(cart, 'currency'), get(cart, 'grand_total', 0));
             currency = toLower(get(cart, 'currency', 'usd'));
             stripeCustomer = get(cart, 'account.stripe_customer');
             _context10.t0 = toSnake;
@@ -776,7 +776,7 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(_error));
 
           case 44:
-            _amount = stripeAmountByCurrency(_currency, get(cart, 'grand_total', 0));
+            _amount = stripeAmountByCurrency(get(cart, 'currency'), get(cart, 'grand_total', 0));
             _currency = toLower(get(cart, 'currency', 'eur'));
             _context10.t3 = toSnake;
             _context10.next = 49;
