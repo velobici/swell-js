@@ -292,8 +292,8 @@ async function paymentTokenize(request, params, payMethods, cart) {
         return onError(paymentMethod.error);
       }
 
-      const amount = stripeAmountByCurrency(get(cart, 'currency'), get(cart, 'grand_total', 0));
       const currency = toLower(get(cart, 'currency', 'usd'));
+      const amount = stripeAmountByCurrency(currency, get(cart, 'grand_total', 0));
       const stripeCustomer = get(cart, 'account.stripe_customer');
       const intent = toSnake(
         await methods(request)
@@ -347,8 +347,8 @@ async function paymentTokenize(request, params, payMethods, cart) {
         return onError(error);
       }
 
-      const amount = stripeAmountByCurrency(get(cart, 'currency'), get(cart, 'grand_total', 0));
       const currency = toLower(get(cart, 'currency', 'eur'));
+      const amount = stripeAmountByCurrency(currency, get(cart, 'grand_total', 0));
       const intent = toSnake(
         await methods(request)
           .createIntent({

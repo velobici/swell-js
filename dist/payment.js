@@ -624,7 +624,7 @@ function paymentTokenize(_x18, _x19, _x20, _x21) {
 
 function _paymentTokenize() {
   _paymentTokenize = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee10(request, params, payMethods, cart) {
-    var onError, stripe, paymentMethod, amount, currency, stripeCustomer, intent, _yield$stripe$confirm, paymentIntent, error, _yield$createIDealPay, _error, _paymentMethod, _amount, _currency, _intent, publishable_key, _stripe, settings, _yield$createKlarnaSo, _error2, source, _publishable_key, _stripe2, _yield$createBanconta, _error3, _source;
+    var onError, stripe, paymentMethod, currency, amount, stripeCustomer, intent, _yield$stripe$confirm, paymentIntent, error, _yield$createIDealPay, _error, _paymentMethod, _currency, _amount, _intent, publishable_key, _stripe, settings, _yield$createKlarnaSo, _error2, source, _publishable_key, _stripe2, _yield$createBanconta, _error3, _source;
 
     return _regenerator["default"].wrap(function _callee10$(_context10) {
       while (1) {
@@ -675,8 +675,8 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(paymentMethod.error));
 
           case 11:
-            amount = stripeAmountByCurrency(get(cart, 'currency'), get(cart, 'grand_total', 0));
             currency = toLower(get(cart, 'currency', 'usd'));
+            amount = stripeAmountByCurrency(currency, get(cart, 'grand_total', 0));
             stripeCustomer = get(cart, 'account.stripe_customer');
             _context10.t0 = toSnake;
             _context10.next = 17;
@@ -776,8 +776,8 @@ function _paymentTokenize() {
             return _context10.abrupt("return", onError(_error));
 
           case 44:
-            _amount = stripeAmountByCurrency(get(cart, 'currency'), get(cart, 'grand_total', 0));
             _currency = toLower(get(cart, 'currency', 'eur'));
+            _amount = stripeAmountByCurrency(_currency, get(cart, 'grand_total', 0));
             _context10.t3 = toSnake;
             _context10.next = 49;
             return methods(request).createIntent({
