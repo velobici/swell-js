@@ -60,6 +60,8 @@ function methods(request, opt) {
 
     format(amount, params = {}) {
       let state = this.get();
+      console.log('swell this.get() ', state);
+      
       if (params.code && params.code !== state.code) {
         const list = this.list();
         state = find(list, { code: params.code }) || {};
@@ -71,10 +73,20 @@ function methods(request, opt) {
       const formatLocale = params.locale || this.locale;
       const formatDecimals = typeof params.decimals === 'number' ? params.decimals : decimals;
 
+
+      console.log('swell formatCode ', formatCode);
+      console.log('swell formatRate ', formatRate);
+      console.log('swell formatLocale ', formatLocale);
+      console.log('swell formatDecimals ', formatDecimals);
+
+
+
       let formatAmount = amount;
       if ((type === 'display' || params.rate) && typeof formatRate === 'number') {
         // Convert the price currency into the display currency
         formatAmount = amount * formatRate;
+        console.log('swell covert formatAmount', formatAmount);
+        
       }
 
       let formatter;
@@ -92,9 +104,13 @@ function methods(request, opt) {
                 maximumFractionDigits: formatDecimals,
               });
         if (typeof formatAmount === 'number') {
+          console.log('swell return formatted amount');
+
           return formatter.format(formatAmount);
         } else {
           // Otherwise return the currency symbol only, falling back to '$'
+          console.log('swell return SYMBOL ONLY');
+          
           return get(formatter.formatToParts(0), '0.value', '$');
         }
       } catch (err) {

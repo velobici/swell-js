@@ -99,6 +99,7 @@ function methods(request, opt) {
     format: function format(amount) {
       var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var state = this.get();
+      console.log('swell this.get() ', state);
 
       if (params.code && params.code !== state.code) {
         var list = this.list();
@@ -116,11 +117,16 @@ function methods(request, opt) {
       var formatRate = params.rate || rate;
       var formatLocale = params.locale || this.locale;
       var formatDecimals = typeof params.decimals === 'number' ? params.decimals : decimals;
+      console.log('swell formatCode ', formatCode);
+      console.log('swell formatRate ', formatRate);
+      console.log('swell formatLocale ', formatLocale);
+      console.log('swell formatDecimals ', formatDecimals);
       var formatAmount = amount;
 
       if ((type === 'display' || params.rate) && typeof formatRate === 'number') {
         // Convert the price currency into the display currency
         formatAmount = amount * formatRate;
+        console.log('swell covert formatAmount', formatAmount);
       }
 
       var formatter;
@@ -135,9 +141,11 @@ function methods(request, opt) {
         });
 
         if (typeof formatAmount === 'number') {
+          console.log('swell return formatted amount');
           return formatter.format(formatAmount);
         } else {
           // Otherwise return the currency symbol only, falling back to '$'
+          console.log('swell return SYMBOL ONLY');
           return get(formatter.formatToParts(0), '0.value', '$');
         }
       } catch (err) {
